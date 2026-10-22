@@ -1,0 +1,76 @@
+hospital:
+  name:
+    en: "Kaveri Multispeciality Hospital"
+    ta: "காவேரி பல்நோக்கு மருத்துவமனை"
+  tagline:
+    en: "Compassionate Care, Advanced Medicine"
+    ta: "அன்பான கவனிப்பு, நவீன மருத்துவம்"
+  address:
+    en: "No. 45, Anna Salai, Teynampet, Chennai, Tamil Nadu 600018"
+    ta: "எண் 45, அண்ணா சாலை, தேனாம்பேட்டை, சென்னை, தமிழ்நாடு 600018"
+  landmark:
+    en: "Opposite Teynampet Signal, near SIET College"
+    ta: "தேனாம்பேட்டை சிக்னல் எதிரில், எஸ்.ஐ.இ.டி கல்லூரி அருகில்"
+  contacts:
+    reception: "+91-44-2499-1000"
+    appointments: "+91-44-2499-1001"
+    emergency: "+91-44-2499-1066"
+    ambulance: "108"
+    email: "reception@kaveri-hospital.example.com"
+  timings:
+    opd:
+      en: "Monday to Saturday: 8:00 AM to 8:00 PM; Sunday: 9:00 AM to 1:00 PM (Emergency only after 1 PM)"
+      ta: "திங்கள் முதல் சனி வரை: காலை 8:00 மணி முதல் இரவு 8:00 மணி வரை; ஞாயிறு: காலை 9:00 மணி முதல் மதியம் 1:00 மணி வரை"
+    emergency:
+      en: "24 hours a day, 7 days a week (24x7)"
+      ta: "24 மணி நேரமும் செயல்படுகிறது (24x7)"
+    pharmacy:
+      en: "24x7 In-house Pharmacy available"
+      ta: "24 மணி நேரமும் இயங்கும் மருந்தகம் உள்ளது"
+    diagnostic_lab:
+      en: "Monday to Sunday: 6:30 AM to 9:00 PM"
+      ta: "திங்கள் முதல் ஞாயிறு வரை: காலை 6:30 மணி முதல் இரவு 9:00 மணி வரை"
+  departments:
+    - name_en: "General Medicine"
+      name_ta: "பொது மருத்துவம்"
+      description_en: "Consultations for fever, diabetes, hypertension, infections, and routine health checks."
+      description_ta: "காய்ச்சல், சர்க்கரை நோய், இரத்த அழுத்தம், தொற்று நோய்கள் மற்றும் பொது பரிசோதனைகள்."
+    - name_en: "Cardiology"
+      name_ta: "இதயவியல் துறை"
+      description_en: "Heart health, ECG, echocardiogram, coronary artery disease management."
+      description_ta: "இதய பரிசோதனை, ஈசிஜி, எக்கோ மற்றும் இதய நோய் சிகிச்சை."
+    - name_en: "Pediatrics"
+      name_ta: "குழந்தைகள் நல மருத்துவம்"
+      description_en: "Child wellness, infant vaccinations, childhood infectious illness."
+      description_ta: "குழந்தைகள் நல பரிசோதனை, தடுப்பூசி மற்றும் குழந்தைகள் நோய் சிகிச்சை."
+    - name_en: "Orthopedics"
+      name_ta: "எலும்பு மூட்டு அறுவை சிகிச்சை"
+      description_en: "Bone fractures, joint pain, arthritis, sports injuries."
+      description_ta: "எலும்பு முறிவு, மூட்டு வலி மற்றும் எலும்பு தொடர்பான சிகிச்சைகள்."
+    - name_en: "ENT (Ear, Nose, Throat)"
+      name_ta: "காது, மூக்கு, தொண்டை மருத்துவம்"
+      description_en: "Sinusitis, ear infections, throat pain, hearing assessments."
+      description_ta: "சைனஸ், காது வலி, தொண்டை தொற்று மற்றும் கேட்கும் திறன் பரிசோதனை."
+    - name_en: "Gynecology & Obstetrics"
+      name_ta: "மகளிர் மற்றும் மகப்பேறு மருத்துவம்"
+      description_en: "Prenatal care, women's health checkups, obstetric ultrasounds."
+      description_ta: "கர்ப்ப கால பரிசோதனை மற்றும் மகளிர் நலம்."
+  accepted_payment_methods:
+    - "Cash"
+    - "UPI (GPay, PhonePe, Paytm)"
+    - "Debit and Credit Cards (Visa, MasterCard, RuPay)"
+    - "Major Private Health Insurances (Star Health, ICICI Lombard, HDFC ERGO, Care)"
+    - "Tamil Nadu Chief Minister's Comprehensive Health Insurance Scheme (CMCHIS)"
+  preparation_instructions:
+    fasting_blood_glucose:
+      en: "Requires 8 to 10 hours of overnight fasting. Only plain water is permitted before the test."
+      ta: "8 முதல் 10 மணி நேரம் இரவு சாப்பிடாமல் இருக்க வேண்டும் (Fasting). தண்ணீர் மட்டுமே குடிக்கலாம்."
+    lipid_profile:
+      en: "Requires 10 to 12 hours of overnight fasting. Avoid heavy or fatty meals the prior evening."
+      ta: "10 முதல் 12 மணி நேரம் சாப்பிடாமல் இருக்க வேண்டும். முந்தைய நாள் இரவு அதிக கொழுப்புள்ள உணவுகளை தவிர்க்கவும்."
+    abdominal_ultrasound:
+      en: "Fast for 6 hours prior. Drink 3-4 glasses of water 1 hour before the scan for a full bladder."
+      ta: "ஸ்கேன் செய்வதற்கு 6 மணி நேரம் முன்பு சாப்பிடக்கூடாது. ஸ்கேன் செய்வதற்கு ஒரு மணி நேரம் முன்பு 3-4 டம்ளர் தண்ணீர் குடிக்க வேண்டும்."
+    first_time_consultation:
+      en: "Please bring any previous medical records, ongoing prescription slips, and a valid government photo ID."
+      ta: "பழைய மருத்துவ ஆவணங்கள், சாப்பிடும் மருந்து சீட்டுகள் மற்றும் அரசு அடையாள அட்டையை எடுத்து வரவும்."

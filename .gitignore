@@ -1,0 +1,31 @@
+# Virtual environment
+.venv/
+venv/
+ENV/
+env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+
+# Environment files
+.env
+*.env.local
+
+# Database
+*.db
+*.sqlite3
+data/*.db
+
+# IDE & OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# LiveKit & ADK local storage
+.adk/
+*.log
