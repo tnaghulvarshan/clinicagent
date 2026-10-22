@@ -27,6 +27,7 @@ from livekit.agents import (
     cli,
 )
 from livekit.agents.voice import Agent, AgentSession
+from livekit.agents.voice.turn import EndpointingOptions, TurnHandlingOptions
 from livekit.plugins.google.realtime import RealtimeModel
 
 # Setup logging
@@ -117,12 +118,15 @@ async def entrypoint(ctx: JobContext) -> None:
                 bridge.set_caller_info(phone=phone)
                 logger.info("Incoming telephone caller detected: %s", phone)
 
-    # Configure Gemini Realtime Multimodal Voice Model (bidiGenerateContent)
+    from google.genai import types
+
+    # Configure Gemini Realtime Multimodal Voice Model with zero thinking delay
     model = RealtimeModel(
         model=settings.gemini_realtime_model,
         api_key=settings.google_api_key,
         voice="Aoede",  # Warm, clear voice supporting natural Tamil & English
         temperature=0.3,
+        thinking_config=types.ThinkingConfig(thinking_budget=0),  # Eliminate silent thinking latency
     )
 
     # Initialize LiveKit Voice Agent with ADK bridged tools
@@ -133,18 +137,24 @@ async def entrypoint(ctx: JobContext) -> None:
         allow_interruptions=True,
     )
 
-    # Start the voice session
-    session = AgentSession()
+    # Start the voice session with responsive endpointing (detects speech end quickly)
+    session = AgentSession(
+        turn_handling=TurnHandlingOptions(
+            endpointing=EndpointingOptions(min_delay=0.4, max_delay=1.5),
+        ),
+    )
     await session.start(agent, room=ctx.room)
 
-    # Send warm bilingual greeting
+    # Trigger initial warm bilingual spoken greeting from the Gemini Realtime model
     caller_intro = f" (Calling from {bridge.caller_phone})" if bridge.caller_phone else ""
     logger.info("Starting voice conversation for caller%s", caller_intro)
 
-    await session.say(
-        "வணக்கம்! காவேரி மருத்துவமனைக்கு உங்களை வரவேற்கிறோம். நான் உங்கள் AI உதவியாளர். "
-        "Hello! Welcome to Kaveri Hospital. How may I assist you today?",
-        allow_interruptions=True,
+    await session.generate_reply(
+        instructions=(
+            "Greet the caller warmly in Tamil and English as the AI Receptionist of Kaveri Hospital. "
+            "Say: 'வணக்கம்! காவேரி மருத்துவமனைக்கு உங்களை வரவேற்கிறோம். நான் உங்கள் AI உதவியாளர். "
+            "Hello! Welcome to Kaveri Hospital. How may I assist you today?'"
+        )
     )
 
 

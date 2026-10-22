@@ -58,7 +58,7 @@ class ADKVoiceBridge:
     name="list_doctors",
     description="List doctors available at the hospital, optionally filtered by medical department or specialty (General Medicine, Cardiology, Pediatrics, Orthopedics, ENT, Gynecology).",
 )
-def voice_list_doctors(department: str = "") -> Dict[str, Any]:
+async def voice_list_doctors(department: str = "") -> Dict[str, Any]:
     """List doctors by department from the verified hospital database."""
     logger.info("Voice tool called: list_doctors(department='%s')", department)
     doctors = _apt_service.list_doctors(department=department)
@@ -74,7 +74,7 @@ def voice_list_doctors(department: str = "") -> Dict[str, Any]:
     name="get_available_slots",
     description="Check real database availability for a doctor on a specific date (YYYY-MM-DD). Never fabricates slots.",
 )
-def voice_get_available_slots(doctor_id: int, date: str) -> Dict[str, Any]:
+async def voice_get_available_slots(doctor_id: int, date: str) -> Dict[str, Any]:
     """Check actual available appointment slots in the hospital database."""
     logger.info("Voice tool called: get_available_slots(doctor_id=%d, date='%s')", doctor_id, date)
     result = _apt_service.get_available_slots(doctor_id=doctor_id, date_str=date)
@@ -92,7 +92,7 @@ def voice_get_available_slots(doctor_id: int, date: str) -> Dict[str, Any]:
     name="book_appointment",
     description="Atomically book an appointment in the hospital database after patient confirmation. Prevents double-booking.",
 )
-def voice_book_appointment(
+async def voice_book_appointment(
     patient_name: str,
     patient_phone: str,
     doctor_id: int,
@@ -133,7 +133,7 @@ def voice_book_appointment(
     name="get_appointment",
     description="Look up an existing appointment by appointment ID and verify patient phone number.",
 )
-def voice_get_appointment(appointment_id: str, patient_phone: str = "") -> Dict[str, Any]:
+async def voice_get_appointment(appointment_id: str, patient_phone: str = "") -> Dict[str, Any]:
     """Look up an existing appointment with patient privacy verification."""
     logger.info("Voice tool called: get_appointment(id='%s')", appointment_id)
     return _apt_service.get_appointment(
@@ -146,7 +146,7 @@ def voice_get_appointment(appointment_id: str, patient_phone: str = "") -> Dict[
     name="reschedule_appointment",
     description="Reschedule an existing appointment to a new date and time slot atomically.",
 )
-def voice_reschedule_appointment(
+async def voice_reschedule_appointment(
     appointment_id: str,
     new_date: str,
     new_start_time: str,
@@ -171,7 +171,7 @@ def voice_reschedule_appointment(
     name="cancel_appointment",
     description="Cancel an appointment and release the time slot back to the hospital schedule.",
 )
-def voice_cancel_appointment(
+async def voice_cancel_appointment(
     appointment_id: str,
     patient_phone: str = "",
     reason: str = "",
@@ -189,7 +189,7 @@ def voice_cancel_appointment(
     name="get_hospital_info",
     description="Retrieve approved administrative information (address, timings, contacts, departments, payments, preparation).",
 )
-def voice_get_hospital_info(topic: str = "general") -> Dict[str, Any]:
+async def voice_get_hospital_info(topic: str = "general") -> Dict[str, Any]:
     """Retrieve approved hospital administrative information."""
     logger.info("Voice tool called: get_hospital_info(topic='%s')", topic)
     return _faq_service.get_hospital_info(topic=topic)
@@ -199,7 +199,7 @@ def voice_get_hospital_info(topic: str = "general") -> Dict[str, Any]:
     name="search_faq",
     description="Search approved hospital FAQs. Returns verified=False if answer is unverified without guessing.",
 )
-def voice_search_faq(query: str) -> Dict[str, Any]:
+async def voice_search_faq(query: str) -> Dict[str, Any]:
     """Search approved hospital FAQs."""
     logger.info("Voice tool called: search_faq(query='%s')", query)
     return _faq_service.search_faq(query=query)
@@ -209,7 +209,7 @@ def voice_search_faq(query: str) -> Dict[str, Any]:
     name="escalate_to_human",
     description="Escalate call to a human receptionist or record an escalation request.",
 )
-def voice_escalate_to_human(
+async def voice_escalate_to_human(
     reason: str,
     stated_concern: str,
     urgency_level: str = "ROUTINE",
@@ -233,7 +233,7 @@ def voice_escalate_to_human(
     name="get_emergency_contact",
     description="Get immediate 24x7 emergency and ambulance contact lines for life-threatening symptoms.",
 )
-def voice_get_emergency_contact() -> Dict[str, Any]:
+async def voice_get_emergency_contact() -> Dict[str, Any]:
     """Retrieve emergency contact information."""
     logger.info("Voice tool called: get_emergency_contact")
     return _handoff_service.get_emergency_contacts()

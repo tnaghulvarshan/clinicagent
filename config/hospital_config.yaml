@@ -27,6 +27,9 @@ hospital:
     pharmacy:
       en: "24x7 In-house Pharmacy available"
       ta: "24 மணி நேரமும் இயங்கும் மருந்தகம் உள்ளது"
+    visiting_hours:
+      en: "Inpatient visiting hours are 4:00 PM to 7:00 PM daily; Sundays 10:00 AM to 12:00 PM and 4:00 PM to 7:00 PM."
+      ta: "உள்நோயாளிகளைப் பார்க்க அனுமதி நேரம்: தினமும் மாலை 4:00 மணி முதல் இரவு 7:00 மணி வரை; ஞாயிற்றுக்கிழமை காலை 10:00 முதல் 12:00 மணி வரை மற்றும் மாலை 4:00 முதல் 7:00 மணி வரை."
     diagnostic_lab:
       en: "Monday to Sunday: 6:30 AM to 9:00 PM"
       ta: "திங்கள் முதல் ஞாயிறு வரை: காலை 6:30 மணி முதல் இரவு 9:00 மணி வரை"

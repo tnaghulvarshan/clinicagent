@@ -64,16 +64,25 @@ class FAQService:
                 "answer_ta": addr_ta,
             }
 
-        elif topic_lower in ("timing", "timings", "hours", "opd", "emergency_timing"):
+        elif (
+            topic_lower in ("timing", "timings", "hours", "opd", "emergency_timing", "visiting", "visiting hours", "visiting_hours", "visit")
+            or "visit" in topic_lower
+            or "timing" in topic_lower
+            or "hour" in topic_lower
+        ):
             timings = cfg.get("timings", {})
-            t_en = f"OPD: {timings.get('opd', {}).get('en', '')}. Emergency: {timings.get('emergency', {}).get('en', '')}."
-            t_ta = f"OPD: {timings.get('opd', {}).get('ta', '')}. அவசர சிகிச்சை: {timings.get('emergency', {}).get('ta', '')}."
+            visiting_en = timings.get("visiting_hours", {}).get("en", "Inpatient visiting hours: 4:00 PM to 7:00 PM.")
+            visiting_ta = timings.get("visiting_hours", {}).get("ta", "பார்வையாளர் நேரம்: மாலை 4:00 முதல் 7:00 வரை.")
+            t_en = f"OPD: {timings.get('opd', {}).get('en', '')}. Visiting Hours: {visiting_en}. Emergency: {timings.get('emergency', {}).get('en', '')}."
+            t_ta = f"OPD: {timings.get('opd', {}).get('ta', '')}. பார்வையாளர் நேரம்: {visiting_ta}. அவசர சிகிச்சை: {timings.get('emergency', {}).get('ta', '')}."
             return {
                 "success": True,
                 "verified": True,
                 "topic": "timings",
                 "opd_en": timings.get("opd", {}).get("en", ""),
                 "opd_ta": timings.get("opd", {}).get("ta", ""),
+                "visiting_hours_en": visiting_en,
+                "visiting_hours_ta": visiting_ta,
                 "emergency_en": timings.get("emergency", {}).get("en", ""),
                 "emergency_ta": timings.get("emergency", {}).get("ta", ""),
                 "pharmacy_en": timings.get("pharmacy", {}).get("en", ""),

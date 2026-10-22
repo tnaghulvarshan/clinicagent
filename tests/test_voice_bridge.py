@@ -84,3 +84,41 @@ def test_telephony_setup_guide():
     guide = TelephonyManager.get_telephony_setup_guide()
     assert guide["milestone"] == "Real Phone Calls via LiveKit SIP"
     assert len(guide["setup_steps"]) >= 4
+
+
+@pytest.mark.asyncio
+async def test_livekit_bridged_tools_are_awaitable():
+    """LiveKit tools must be coroutines to prevent 'TypeError: object dict can't be used in await expression'."""
+    from voice.adk_bridge import (
+        voice_list_doctors,
+        voice_get_hospital_info,
+        voice_search_faq,
+        voice_get_emergency_contact,
+        voice_get_available_slots,
+    )
+
+    # 1. list_doctors
+    docs_result = await voice_list_doctors(department="Cardiology")
+    assert isinstance(docs_result, dict)
+    assert docs_result["success"] is True
+    assert len(docs_result["doctors"]) > 0
+
+    # 2. get_hospital_info
+    info_result = await voice_get_hospital_info(topic="visiting hours")
+    assert isinstance(info_result, dict)
+    assert info_result["success"] is True
+    assert "visiting" in info_result.get("answer_en", "").lower() or info_result["topic"] == "timings"
+
+    # 3. search_faq
+    faq_result = await voice_search_faq(query="emergency")
+    assert isinstance(faq_result, dict)
+
+    # 4. get_emergency_contact
+    emg_result = await voice_get_emergency_contact()
+    assert isinstance(emg_result, dict)
+    assert "108" in emg_result["ambulance"]
+
+    # 5. get_available_slots
+    slots_result = await voice_get_available_slots(doctor_id=1, date="2026-10-23")
+    assert isinstance(slots_result, dict)
+
